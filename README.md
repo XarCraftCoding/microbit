@@ -5,23 +5,24 @@ It is called `Microbit` because it is mostly coded in `Micro` code editor in `Li
 
 ## Building
 
-> You have to have `Git` installed on your computer.
+First, you have to install `qemu`, `nasm`, `make` and `micro`.
+To install those you have to run `build.sh`. It will automaticly install the libraries and run the project. If you want to run the operating system individually, just run `run.sh` with `./run.sh` .
+
+## Debugging
 
 First, you have to install `qemu`, `nasm`, `make` and `micro`.
-To install those you have to run these commands:
 
-```bash
-sudo apt install make nasm qemu
-sudo snap install micro --classic
-```
+Just run debug `debug.sh` by `./debug.sh`.
 
-Then, run these commands:
+## Contributing
 
-```bash
-git clone https://github.com/XarCraftCoding/Microbit
-cd Microbit
-make
-qemu-system-i386 -fda build/main_floppy.img
-```
+I am not accepting any pull requests. Maybe in the future.
 
-or, you can just run `build.sh`.
+## Credits
+
+Thank you for `nanobyte` to making a tutorial series of how to make a operating system.
+
+## Thank You
+
+Thank you for reading the ___README.md___.
+If you like this little operating system you can consider following this repository.

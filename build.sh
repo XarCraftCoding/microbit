@@ -1,14 +1,14 @@
-echo -e \nInstalling the Libraries...\n
-sudo apt install make nasm qemu
+echo Installing the Libraries...
+sudo apt install make nasm qemu bochs bochs-sdl bochsbios vgabios
 sudo snap install micro --classic
-echo -e \nTask Success!\n
+echo Task Success!
 
-echo -e \nInstalling the Source Code...\n
+echo Installing the Source Code...
 git clone https://github.com/XarCraftCoding/Microbit
-cd Microbit
-echo -e \nTask Success!\n
+echo Task Success!
 
 echo Running...
+cd Microbit
 make
-qemu-system-i386 -fda build/main_floppy.img
-echo \nTask Success!\n
+./run.sh
+echo Task Success!
