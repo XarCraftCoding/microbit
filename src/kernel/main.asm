@@ -1,4 +1,4 @@
-org 0x7C00
+org 0x0
 bits 16
 
 
@@ -6,8 +6,13 @@ bits 16
 
 
 start:
-	jmp main
+    ; Print Hello World Message
+    mov si, msg_hello
+    call puts
 
+.halt:
+    cli
+    hlt
 
 ;
 ; Prints a String to the Screen
@@ -15,52 +20,26 @@ start:
 ;   - DS:SI Points to String
 ;
 puts:
-	; Save Registers We Will Modify
-	push si
-	push ax
-	push bx
+    ; Save Registers We Will Modify
+    push si
+    push ax
+    push bx
 
 .loop:
-	lodsb               ; Loads Next Character in AL
-	or al, al           ; Verify If Next Character is Null?
-	jz .done
+    lodsb               ; Loads Next Character in AL
+    or al, al           ; Verify If Next Character is Null?
+    jz .done
 
-	mov ah, 0x0E        ; Call BIOS Interrupt
-	mov bh, 0           ; Set Page Number to 0
-	int 0x10
+    mov ah, 0x0E        ; Call BIOS Interrupt
+    mov bh, 0           ; Set Page Number to 0
+    int 0x10
 
-	jmp .loop
+    jmp .loop
 
 .done:
-	pop bx
-	pop ax
-	pop si
-	ret
-	
+    pop bx
+    pop ax
+    pop si
+    ret
 
-main:
-	; Setup Data Segments
-	mov ax, 0           ; Can't Set DS/ES Directly
-	mov ds, ax
-	mov es, ax
-	
-	; Setup Stack
-	mov ss, ax
-	mov sp, 0x7C00      ; Stack Grows Downwards From Where We Are Loaded In Memory
-
-	; Print Hello World Message
-	mov si, msg
-	call puts
-
-	hlt
-
-.halt
-	jmp .halt
-
-
-
-msg: db 'Hello world!', ENDL, 0
-
-
-times 510-($-$$) db 0
-dw 0AA55h
+msg_hello: db 'Hello world!', ENDL, 0

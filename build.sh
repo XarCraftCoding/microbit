@@ -9,6 +9,7 @@ echo Task Success!
 
 echo Running...
 cd Microbit
+mkdir build
 make
 ./run.sh
 echo Task Success!
